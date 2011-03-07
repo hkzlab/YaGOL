@@ -4,7 +4,7 @@ BINDIR=bin
 CFLAGS=-O2 -Isrc/
 LDFLAGS=-lSDL
 
-MODULES=$(BINDIR)/main.o $(BINDIR)/shared_vars.o $(BINDIR)/events_manager.o $(BINDIR)/gol.o
+MODULES=$(BINDIR)/main.o $(BINDIR)/shared_vars.o $(BINDIR)/events_manager.o $(BINDIR)/gol.o $(BINDIR)/drawing_base.o
 
 all: gol2d
 
@@ -20,6 +20,9 @@ $(BINDIR)/shared_vars.o:	$(SRCDIR)/common/shared_vars.c
 
 $(BINDIR)/events_manager.o:	$(SRCDIR)/events/events_manager.c
 	gcc -c $(CFLAGS) $(SRCDIR)/events/events_manager.c -o $(BINDIR)/events_manager.o
+
+$(BINDIR)/drawing_base.o:	$(SRCDIR)/drawing/drawing_base.c
+	gcc -c $(CFLAGS) $(SRCDIR)/drawing/drawing_base.c -o $(BINDIR)/drawing_base.o
 
 $(BINDIR)/gol.o:	$(SRCDIR)/gol/gol.c
 	gcc -c $(CFLAGS) $(SRCDIR)/gol/gol.c -o $(BINDIR)/gol.o

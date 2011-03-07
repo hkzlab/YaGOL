@@ -1,0 +1,4 @@
+#ifndef _YAGOL_DRAWING_HEADER_
+#define _YAGOL_DRAWING_HEADER_
+
+#endif /* _YAGOL_DRAWING_HEADER_ */
