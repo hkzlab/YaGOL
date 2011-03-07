@@ -22,8 +22,7 @@ int main(void) {
 		exit(-1);
 	}
 
-
-
+	// seed random number generator
 	srand(time(NULL));
 
 	// Main program loop.
@@ -41,11 +40,15 @@ int main(void) {
 
 int init_system(void) {
 	// Init... everything.
-	if(SDL_Init(SDL_INIT_EVERYTHING) < 0)
-        return 0;
-
- 	if (!(sdl_screen = SDL_SetVideoMode(GRAPH_WIDTH, GRAPH_HEIGHT, GRAPH_DEPTH, SDL_HWSURFACE | SDL_DOUBLEBUF)))
+	if(SDL_Init(SDL_INIT_EVERYTHING) < 0) {
+     	fprintf(stderr, "SDL Error: %s\n", SDL_GetError());
 		return 0;
+	}
+
+ 	if (!(sdl_screen = SDL_SetVideoMode(GRAPH_WIDTH, GRAPH_HEIGHT, GRAPH_DEPTH, SDL_HWSURFACE | SDL_DOUBLEBUF))) {
+		fprintf(stderr, "SDL Error: %s\n", SDL_GetError());
+		return 0;
+	}
 
 	return 1;
 }
