@@ -1,6 +1,7 @@
 #include "events/events.h"
-
 #include <SDL/SDL.h>
+
+extern Uint8 should_quit;
 
 void poll_sdl_events(void) {
 	SDL_Event event;
@@ -14,8 +15,8 @@ void poll_sdl_events(void) {
 			case SDL_MOUSEBUTTONUP:
 				break;
 			case SDL_QUIT:
-				deinit_system();
-				exit(0);
+				should_quit = 1;
+				break;
 		}
 	}
 }

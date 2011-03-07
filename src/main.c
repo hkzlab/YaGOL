@@ -11,6 +11,7 @@
 
 
 extern SDL_Surface *sdl_screen;
+extern Uint8 should_quit;
 
 int main(void) {
 
@@ -30,7 +31,7 @@ int main(void) {
 	randomize_gol(); // Randomize GoL grid status
 
 	// Main program loop.
-	while (1) {
+	while (!should_quit) {
 		// Poll and handle events
 		poll_sdl_events();
 
@@ -39,12 +40,13 @@ int main(void) {
 		usleep(100000);
 	}
 
-	// We should NEVER get here
 	deinit_system();
 	return 0;
 }
 
 int init_system(void) {
+	should_quit = 0;
+
 	// Init... everything.
 	if(SDL_Init(SDL_INIT_EVERYTHING) < 0) {
      	fprintf(stderr, "SDL Error: %s\n", SDL_GetError());
