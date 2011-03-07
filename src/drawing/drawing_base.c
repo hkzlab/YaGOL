@@ -3,7 +3,7 @@
 
 Uint32 dw_getPixel(SDL_Surface *s, Uint16 x, Uint16 y) {
 	assert(s);
-	assert(x < s->w && y < s->h && x >= 0 && y >= 0);
+	assert(x < s->w && y < s->h);
 
 	Uint32 bpp = s->format->BytesPerPixel;
 	Uint8 *p =  (Uint8 *)s->pixels + (y * s->pitch) + (x * bpp);
@@ -26,7 +26,7 @@ Uint32 dw_getPixel(SDL_Surface *s, Uint16 x, Uint16 y) {
 
 void dw_setPixel(SDL_Surface *s, Uint32 color, Uint16 x, Uint16 y) {
 	assert(s);
-	assert(x < s->w && y < s->h && x >= 0 && y >= 0);
+	assert(x < s->w && y < s->h);
 
 	Uint32 bpp = s->format->BytesPerPixel;
 	Uint8 *p =  (Uint8 *)s->pixels + (y * s->pitch) + (x * bpp);
@@ -55,13 +55,36 @@ void dw_setPixel(SDL_Surface *s, Uint32 color, Uint16 x, Uint16 y) {
 }
 
 void dw_drawHLine(SDL_Surface *s, Uint32 color, Uint16 x, Uint16 y, Uint16 len) {
-	;
+	assert(s);
+	assert(x + len < s->w && y < s->h && len);
+
+	SDL_Rect rect;
+	rect.x = x; rect.y = y; rect.w = len; rect.h = 1;
+
+	SDL_FillRect(s, &rect, color);
 }
 
 void dw_drawVLine(SDL_Surface *s, Uint32 color, Uint16 x, Uint16 y, Uint16 len) {
-	;
+	assert(s);
+	assert(x < s->w && y + len < s->h && len);
+
+	SDL_Rect rect;
+	rect.x = x; rect.y = y; rect.w = 1; rect.h = len;
+
+	SDL_FillRect(s, &rect, color);	
 }
 
 void dw_drawBox(SDL_Surface *s, Uint32 color, Uint16 x, Uint16 y, Uint16 h, Uint16 w, Uint16 border) {
-	;
+	assert(s);
+	assert(x + w < s->w && y + h < s->h && h && w);
+
+	while (border--) {
+		dw_drawVLine(s, color, x, y, h);
+		dw_drawVLine(s, color, x + w, y, h);
+		dw_drawHLine(s, color, x, y, w);
+		dw_drawHLine(s, color, x, y + h, w);
+
+		x++; y++;
+		w--; h--;
+	}
 }
