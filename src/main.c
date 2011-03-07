@@ -25,10 +25,16 @@ int main(void) {
 	// seed random number generator
 	srand(time(NULL));
 
+	// Initialize Game of Life engine
+	init_gol(50, 50);
+	randomize_gol(); // Randomize GoL grid status
+
 	// Main program loop.
 	while (1) {
 		// Poll and handle events
 		poll_sdl_events();
+
+		gol_step();
 
 		usleep(100000);
 	}
@@ -54,6 +60,10 @@ int init_system(void) {
 }
 
 void deinit_system(void) {
+	// Deinit GoL engine
+	deinit_gol();
+
+	// Free screen surface
 	SDL_FreeSurface(sdl_screen);
 
 	// de-init SDL
