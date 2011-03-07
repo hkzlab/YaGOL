@@ -1,6 +1,9 @@
 #ifndef _GRAPROJ_COMMON_DEFS_
 #define _GRAPROJ_COMMON_DEFS_
 
+// Include these everywhere...
+#include <assert.h>
+
 // Generic type definitions
 typedef unsigned char uint8;
 typedef unsigned short uint16;
