@@ -8,6 +8,7 @@
 #include "common/defs.h"
 #include "events/events.h"
 #include "gol/gol.h"
+#include "drawing/drawing.h"
 
 
 extern SDL_Surface *sdl_screen;
@@ -29,6 +30,10 @@ int main(void) {
 	// Initialize Game of Life engine
 	init_gol(50, 50);
 	randomize_gol(); // Randomize GoL grid status
+
+	// Draw the main GUI 
+	dw_gui_drawControlDeck(sdl_screen, HCenter, VBottom);
+	SDL_Flip(sdl_screen);
 
 	// Main program loop.
 	while (!should_quit) {
