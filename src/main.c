@@ -27,7 +27,7 @@ int main(void) {
 
 	// Initialize Game of Life engine
 	init_gol(DEFAULT_GRID_WIDTH, DEFAULT_GRID_HEIGHT);
-	randomize_gol(); // Randomize GoL grid status
+	reset_gol(); // Clean grid status
 
 	// Draw the main GUI 
 	Uint32 cell_grid_x, cell_grid_y;
@@ -70,6 +70,7 @@ int init_system(void) {
 	should_quit = 0;
 	should_redraw_grid = 0;
 	fast_forward = 0;
+	paused = 1;
 
 	// Init... everything.
 	if(SDL_Init(SDL_INIT_EVERYTHING) < 0) {

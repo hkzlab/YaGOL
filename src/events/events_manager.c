@@ -53,5 +53,9 @@ void button_press(SDL_MouseButtonEvent *ev) {
 			reset_gol();
 			should_redraw_grid = 1;
 		}
+
+		return;
 	}
+
+	// Now i should manage clicks on the GoL board
 }
