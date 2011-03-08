@@ -10,7 +10,7 @@
 #define STEP_BUTTON "resources/step_button.png"
 #define STOP_BUTTON "resources/stop_button.png"
 
-void dw_gui_drawControlDeck(SDL_Surface *s, enum HPosition vpos, enum VPosition hpos) {
+void dw_gui_drawControlDeck(SDL_Surface *s, enum HPosition hpos, enum VPosition vpos) {
 	assert(s);
 
 	Uint16 x_deck_pos, y_deck_pos;
