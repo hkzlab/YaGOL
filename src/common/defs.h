@@ -26,4 +26,6 @@ typedef long long Sint64;
 #define DEFAULT_GRID_HEIGHT 130
 #define DEFAULT_CELL_SIZE 3 // Cell size in pixels
 
+#define BUTTON_WIDTH 32 // Button width in control deck
+
 #endif /* _GRAPROJ_COMMON_DEFS_ */

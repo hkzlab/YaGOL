@@ -10,7 +10,7 @@
 #define STEP_BUTTON "src/resources/step_button.png"
 #define STOP_BUTTON "src/resources/stop_button.png"
 
-#define BUTTON_WIDTH 32
+extern Uint16 all_button_y, chaos_button_x, fastf_button_x, quit_button_x, start_button_x, step_button_x, stop_button_x;
 
 void dw_gui_private_drawFullImage(SDL_Surface *s, char *imagepath, Uint16 x, Uint16 y);
 
@@ -70,27 +70,35 @@ void dw_gui_drawControlDeck(SDL_Surface *s, enum HPosition hpos, enum VPosition 
 	y_button_pos = y_deck_pos + 4;
 	x_button_pos = x_deck_pos + 4;
 
+	all_button_y = y_button_pos;
+
 	// START button
+	start_button_x = x_button_pos;
 	dw_gui_private_drawFullImage(s, START_BUTTON, x_button_pos, y_button_pos);
 
 	// STEP button
 	x_button_pos += BUTTON_WIDTH + 3;
+	step_button_x = x_button_pos;
 	dw_gui_private_drawFullImage(s, STEP_BUTTON, x_button_pos, y_button_pos);
 
 	// FASTF button
 	x_button_pos += BUTTON_WIDTH + 3;
+	fastf_button_x = x_button_pos;
 	dw_gui_private_drawFullImage(s, FASTF_BUTTON, x_button_pos, y_button_pos);
 
 	// STOP button
 	x_button_pos += BUTTON_WIDTH + 3;
+	stop_button_x = x_button_pos;
 	dw_gui_private_drawFullImage(s, STOP_BUTTON, x_button_pos, y_button_pos);
 
 	// QUIT button
 	x_button_pos = (x_deck_pos + main_deck->w) - 4 - BUTTON_WIDTH;
+	quit_button_x = x_button_pos;
 	dw_gui_private_drawFullImage(s, QUIT_BUTTON, x_button_pos, y_button_pos);
 
 	// CHAOS button
-	x_button_pos -= BUTTON_WIDTH + 3 ;
+	x_button_pos -= BUTTON_WIDTH + 3;
+	chaos_button_x = x_button_pos;
 	dw_gui_private_drawFullImage(s, CHAOS_BUTTON, x_button_pos, y_button_pos);
 
 	// DECK LOGO!
