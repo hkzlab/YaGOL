@@ -3,16 +3,19 @@
 
 // Include these everywhere...
 #include <assert.h>
+#include <SDL/SDL.h>
 
+#if 0  // Already included into SDL.h
 // Generic type definitions
-typedef unsigned char uint8;
-typedef unsigned short uint16;
-typedef unsigned int uint32;
-typedef unsigned long long uint64;
-typedef char sint8;
-typedef short sint16;
-typedef int sint32;
-typedef long long sint64;
+typedef unsigned char Uint8;
+typedef unsigned short Uint16;
+typedef unsigned int Uint32;
+typedef unsigned long long Uint64;
+typedef char Sint8;
+typedef short Sint16;
+typedef int Sint32;
+typedef long long Sint64;
+#endif
 
 // Graphical output definitions
 #define GRAPH_WIDTH 640

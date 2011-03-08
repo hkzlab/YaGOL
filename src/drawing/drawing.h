@@ -1,7 +1,6 @@
 #ifndef _YAGOL_DRAWING_HEADER_
 #define _YAGOL_DRAWING_HEADER_
 
-#include <SDL/SDL.h>
 #include "common/defs.h"
 
 // * BASE DRAWING FUNCTIONS *

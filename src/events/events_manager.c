@@ -1,5 +1,5 @@
 #include "events/events.h"
-#include <SDL/SDL.h>
+#include "common/defs.h"
 
 extern Uint8 should_quit;
 
