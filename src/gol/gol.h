@@ -35,4 +35,7 @@ Uint32 gol_step(void);
 // Perform 'steps' steps of GoL and return after-exec step number
 Uint32 gol_multiple_steps(Uint8 steps);
 
+// Turns the board into a negative version of itself
+void gol_negative_board(void);
+
 #endif /* _GOL_HEADER_ */

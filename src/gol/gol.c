@@ -187,6 +187,14 @@ void set_gol_current_rule(Uint8 rule) {
 	gol_current_rule = rule;
 }
 
+void gol_negative_board(void) {
+	Uint16 x, y;
+
+	for (x = 0; x < gol_grid_width; x++)
+		for (y = 0; y < gol_grid_height; y++)
+			set_gol_node(!get_gol_node(x, y), x, y);
+}
+
 void flip_gol_grids(void) {
 	Uint8 *temp_grid = back_gol_grid;
 
