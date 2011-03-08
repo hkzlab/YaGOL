@@ -61,7 +61,7 @@ int main(void) {
 			should_redraw_grid = 0;
 		}
 
-		usleep(100000);
+		SDL_Delay(100);
 	}
 
 	deinit_system();
