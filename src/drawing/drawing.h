@@ -21,4 +21,7 @@ enum HPosition {HLeft, HCenter, HRight};
 
 void dw_gui_drawControlDeck(SDL_Surface *s, enum HPosition hpos, enum VPosition vpos);
 
+// * GoL DRAWING FUNCTIONS *
+void dw_gol_drawGoLPlane(SDL_Surface *s, Uint16 x, Uint16 y, Uint16 cell_size, Uint32 cell_color);
+
 #endif /* _YAGOL_DRAWING_HEADER_ */
