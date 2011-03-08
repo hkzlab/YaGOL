@@ -32,7 +32,7 @@ int main(void) {
 	randomize_gol(); // Randomize GoL grid status
 
 	// Draw the main GUI 
-	dw_gui_drawControlDeck(sdl_screen, HCenter, VBottom);
+	dw_gui_drawControlDeck(sdl_screen, HCenter, VTop);
 	SDL_Flip(sdl_screen);
 
 	// Main program loop.
