@@ -11,6 +11,7 @@
 
 extern SDL_Surface *sdl_screen;
 extern Uint8 should_quit, should_redraw_grid, fast_forward, paused;
+extern Uint16 cell_grid_x, cell_grid_y, cell_grid_size;
 
 int main(void) {
 
@@ -30,12 +31,12 @@ int main(void) {
 	reset_gol(); // Clean grid status
 
 	// Draw the main GUI 
-	Uint32 cell_grid_x, cell_grid_y;
 	dw_gui_drawControlDeck(sdl_screen, HCenter, VTop);
 	
-	cell_grid_x = (GRAPH_WIDTH - (DEFAULT_GRID_WIDTH * DEFAULT_CELL_SIZE)) / 2;
+	cell_grid_size = DEFAULT_CELL_SIZE;
+	cell_grid_x = (GRAPH_WIDTH - (DEFAULT_GRID_WIDTH * cell_grid_size)) / 2;
 	cell_grid_y = 53;
-	dw_drawBox(sdl_screen, SDL_MapRGB(sdl_screen->format, 150, 150, 150), cell_grid_x - 3, cell_grid_y - 3, (DEFAULT_GRID_WIDTH * DEFAULT_CELL_SIZE) + 6, (DEFAULT_GRID_HEIGHT * DEFAULT_CELL_SIZE) + 6, 3);
+	dw_drawBox(sdl_screen, SDL_MapRGB(sdl_screen->format, 150, 150, 150), cell_grid_x - 3, cell_grid_y - 3, (DEFAULT_GRID_WIDTH * cell_grid_size) + 6, (DEFAULT_GRID_HEIGHT * cell_grid_size) + 6, 3);
 	SDL_Flip(sdl_screen);
 
 	// Main program loop.
