@@ -2,7 +2,7 @@
 #include "common/defs.h"
 
 extern Uint8 should_quit, should_redraw_grid, fast_forward, paused;
-extern Uint16 all_button_y, chaos_button_x, fastf_button_x, quit_button_x, start_button_x, step_button_x, stop_button_x;
+extern Uint16 all_button_y, chaos_button_x, fastf_button_x, quit_button_x, start_button_x, step_button_x, stop_button_x, neg_button_x;
 extern Uint16 cell_grid_x, cell_grid_y, cell_grid_size;
 
 extern Uint32 current_step;
@@ -55,6 +55,10 @@ void button_press(SDL_MouseButtonEvent *ev) {
 		} else if (ev->x >= stop_button_x && ev->x <= stop_button_x + BUTTON_WIDTH) { // STOP button
 			paused = 1;
 			reset_gol();
+			current_step = 0;
+			should_redraw_grid = 1;
+		} else if (ev->x >= neg_button_x && ev->x <= neg_button_x + BUTTON_WIDTH) { // NEG button
+			gol_negative_board();
 			current_step = 0;
 			should_redraw_grid = 1;
 		}

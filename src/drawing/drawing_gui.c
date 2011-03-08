@@ -9,8 +9,9 @@
 #define START_BUTTON "src/resources/start_button.png"
 #define STEP_BUTTON "src/resources/step_button.png"
 #define STOP_BUTTON "src/resources/stop_button.png"
+#define NEG_BUTTON "src/resources/neg_button.png"
 
-extern Uint16 all_button_y, chaos_button_x, fastf_button_x, quit_button_x, start_button_x, step_button_x, stop_button_x;
+extern Uint16 all_button_y, chaos_button_x, fastf_button_x, quit_button_x, start_button_x, step_button_x, stop_button_x, neg_button_x;
 
 void dw_gui_private_drawFullImage(SDL_Surface *s, char *imagepath, Uint16 x, Uint16 y);
 
@@ -101,10 +102,14 @@ void dw_gui_drawControlDeck(SDL_Surface *s, enum HPosition hpos, enum VPosition 
 	chaos_button_x = x_button_pos;
 	dw_gui_private_drawFullImage(s, CHAOS_BUTTON, x_button_pos, y_button_pos);
 
-	// DECK LOGO!
-	x_button_pos -= 70 ;
-	dw_gui_private_drawFullImage(s, DECK_LOGO, x_button_pos, y_button_pos);
+	// NEG button
+	x_button_pos -= BUTTON_WIDTH + 3;
+	neg_button_x = x_button_pos;
+	dw_gui_private_drawFullImage(s, NEG_BUTTON, x_button_pos, y_button_pos);
 
+	// DECK LOGO!
+	//x_button_pos -= 80 ;
+	//dw_gui_private_drawFullImage(s, DECK_LOGO, x_button_pos, y_button_pos);
 
 	// Unlock and free main deck surface
 	if (SDL_MUSTLOCK(main_deck)) SDL_UnlockSurface(main_deck);
