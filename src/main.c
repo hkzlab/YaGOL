@@ -14,8 +14,6 @@ extern SDL_Surface *sdl_screen;
 extern Uint8 should_quit, should_redraw_grid, fast_forward, paused;
 extern Uint16 cell_grid_x, cell_grid_y, cell_grid_size;
 
-extern Uint32 current_step;
-
 int main(void) {
 
 	// Init system
@@ -49,7 +47,7 @@ int main(void) {
 	cell_grid_y = 53;
 	dw_drawBox(sdl_screen, SDL_MapRGB(sdl_screen->format, 150, 150, 150), cell_grid_x - 3, cell_grid_y - 3, (DEFAULT_GRID_WIDTH * cell_grid_size) + 6, (DEFAULT_GRID_HEIGHT * cell_grid_size) + 6, 3);
 	
-	snprintf(step_string, 79, "Step: %.8u", current_step);
+	snprintf(step_string, 79, "Step: %.8u", get_gol_step());
 	print_text_simple(sdl_screen, step_string, clear_text_rect.x, clear_text_rect.y);
 	
 	SDL_Flip(sdl_screen);
@@ -61,9 +59,9 @@ int main(void) {
 
 		if (!paused) {
 			if (!fast_forward)
-				current_step = gol_step();
+				gol_step();
 			else
-				current_step = gol_multiple_steps(8);
+				gol_multiple_steps(8);
 
 			should_redraw_grid = 1;
 		}
@@ -73,7 +71,7 @@ int main(void) {
 			
 			SDL_FillRect(sdl_screen, &clear_text_rect, SDL_MapRGB(sdl_screen->format, 0, 0, 0)); // Clear text spacen
 			
-			snprintf(step_string, 79, "Step: %.8u", current_step);
+			snprintf(step_string, 79, "Step: %.8u", get_gol_step());
 			print_text_simple(sdl_screen, step_string, clear_text_rect.x, clear_text_rect.y);
 
 			SDL_Flip(sdl_screen);
@@ -93,8 +91,6 @@ int init_system(void) {
 	should_redraw_grid = 0;
 	fast_forward = 0;
 	paused = 1;
-
-	current_step = 0;
 
 	// Init... everything.
 	if(SDL_Init(SDL_INIT_EVERYTHING) < 0) {

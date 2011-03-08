@@ -38,4 +38,7 @@ Uint32 gol_multiple_steps(Uint8 steps);
 // Turns the board into a negative version of itself
 void gol_negative_board(void);
 
+// Get GoL step number
+Uint32 get_gol_step(void);
+
 #endif /* _GOL_HEADER_ */

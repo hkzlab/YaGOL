@@ -11,5 +11,3 @@ Uint16 chaos_button_x, fastf_button_x, quit_button_x, start_button_x, step_butto
 // GoL grid position here
 Uint16 cell_grid_x, cell_grid_y, cell_grid_size;
 
-Uint32 current_step;
-

@@ -62,6 +62,8 @@ void deinit_gol(void) {
 void randomize_gol(void) {
 	Uint16 x, y;
 
+	gol_step_counter = 0;
+
 	for (x = 0; x < gol_grid_width; x++)
 		for (y = 0; y < gol_grid_height; y++) {
 			GRID_POINT(main_gol_grid, x, y) = random() % 2;
@@ -190,9 +192,15 @@ void set_gol_current_rule(Uint8 rule) {
 void gol_negative_board(void) {
 	Uint16 x, y;
 
+	gol_step_counter = 0;
+
 	for (x = 0; x < gol_grid_width; x++)
 		for (y = 0; y < gol_grid_height; y++)
 			set_gol_node(!get_gol_node(x, y), x, y);
+}
+
+Uint32 get_gol_step(void) {
+	return gol_step_counter;
 }
 
 void flip_gol_grids(void) {
