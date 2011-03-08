@@ -10,7 +10,7 @@
 
 
 extern SDL_Surface *sdl_screen;
-extern Uint8 should_quit;
+extern Uint8 should_quit, should_redraw_grid, fast_forward, paused;
 
 int main(void) {
 
@@ -36,7 +36,6 @@ int main(void) {
 	cell_grid_x = (GRAPH_WIDTH - (DEFAULT_GRID_WIDTH * DEFAULT_CELL_SIZE)) / 2;
 	cell_grid_y = 53;
 	dw_drawBox(sdl_screen, SDL_MapRGB(sdl_screen->format, 150, 150, 150), cell_grid_x - 3, cell_grid_y - 3, (DEFAULT_GRID_WIDTH * DEFAULT_CELL_SIZE) + 6, (DEFAULT_GRID_HEIGHT * DEFAULT_CELL_SIZE) + 6, 3);
-
 	SDL_Flip(sdl_screen);
 
 	// Main program loop.
@@ -44,9 +43,21 @@ int main(void) {
 		// Poll and handle events
 		poll_sdl_events();
 
-		gol_step();
-		dw_gol_drawGoLPlane(sdl_screen, cell_grid_x, cell_grid_y, DEFAULT_CELL_SIZE, SDL_MapRGB(sdl_screen->format, 0, 200, 0), SDL_MapRGB(sdl_screen->format, 0, 100, 0));
-		SDL_Flip(sdl_screen);
+		if (!paused) {
+			if (!fast_forward)
+				gol_step();
+			else
+				gol_multiple_steps(8);
+
+			should_redraw_grid = 1;
+		}
+
+		if (should_redraw_grid) {
+			dw_gol_drawGoLPlane(sdl_screen, cell_grid_x, cell_grid_y, DEFAULT_CELL_SIZE, SDL_MapRGB(sdl_screen->format, 0, 200, 0), SDL_MapRGB(sdl_screen->format, 0, 100, 0));
+			SDL_Flip(sdl_screen);
+		
+			should_redraw_grid = 0;
+		}
 
 		usleep(100000);
 	}
@@ -57,6 +68,8 @@ int main(void) {
 
 int init_system(void) {
 	should_quit = 0;
+	should_redraw_grid = 0;
+	fast_forward = 0;
 
 	// Init... everything.
 	if(SDL_Init(SDL_INIT_EVERYTHING) < 0) {
