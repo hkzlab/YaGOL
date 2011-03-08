@@ -28,11 +28,13 @@ int main(void) {
 	srand(time(NULL));
 
 	// Initialize Game of Life engine
-	init_gol(50, 50);
+	init_gol(DEFAULT_GRID_WIDTH, DEFAULT_GRID_HEIGHT);
 	randomize_gol(); // Randomize GoL grid status
 
 	// Draw the main GUI 
 	dw_gui_drawControlDeck(sdl_screen, HCenter, VTop);
+	dw_drawBox(sdl_screen, SDL_MapRGB(sdl_screen->format, 100, 100, 100), (GRAPH_WIDTH - (DEFAULT_GRID_WIDTH * 3)) / 2 - 3, 50, (DEFAULT_GRID_WIDTH * 3) + 3, (DEFAULT_GRID_HEIGHT * 3) + 3, 3);
+
 	SDL_Flip(sdl_screen);
 
 	// Main program loop.
