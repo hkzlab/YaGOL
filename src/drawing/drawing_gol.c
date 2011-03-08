@@ -30,6 +30,7 @@ void dw_gol_drawGoLPlane(SDL_Surface *s, Uint16 x, Uint16 y, Uint16 cell_size, U
 
 			SDL_FillRect(s, &node, color);
 			if (color != col_black) dw_drawBox(s, border_color, node.x, node.y, node.w, node.h, 1);
+			else dw_drawBox(s, SDL_MapRGB(s->format, 20, 20, 30), node.x, node.y, node.w, node.h, 1);
 		}
 
 	if (SDL_MUSTLOCK(s)) SDL_UnlockSurface(s);

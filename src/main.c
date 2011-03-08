@@ -46,7 +46,8 @@ int main(void) {
 	cell_grid_x = (GRAPH_WIDTH - (DEFAULT_GRID_WIDTH * cell_grid_size)) / 2;
 	cell_grid_y = 53;
 	dw_drawBox(sdl_screen, SDL_MapRGB(sdl_screen->format, 150, 150, 150), cell_grid_x - 3, cell_grid_y - 3, (DEFAULT_GRID_WIDTH * cell_grid_size) + 6, (DEFAULT_GRID_HEIGHT * cell_grid_size) + 6, 3);
-	
+	dw_gol_drawGoLPlane(sdl_screen, cell_grid_x, cell_grid_y, DEFAULT_CELL_SIZE, SDL_MapRGB(sdl_screen->format, 0, 200, 0), SDL_MapRGB(sdl_screen->format, 0, 100, 0));
+
 	snprintf(step_string, 79, "Step: %.8u", get_gol_step());
 	print_text_simple(sdl_screen, step_string, clear_text_rect.x, clear_text_rect.y);
 	
