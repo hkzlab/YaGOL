@@ -1,7 +1,7 @@
 #include "drawing/drawing.h"
 #include "gol/gol.h"
 
-void dw_gol_drawGoLPlane(SDL_Surface *s, Uint16 x, Uint16 y, Uint16 cell_size, Uint32 cell_color) {
+void dw_gol_drawGoLPlane(SDL_Surface *s, Uint16 x, Uint16 y, Uint16 cell_size, Uint32 cell_color, Uint32 border_color) {
 	assert(s);
 	assert(cell_size);
 
@@ -29,6 +29,7 @@ void dw_gol_drawGoLPlane(SDL_Surface *s, Uint16 x, Uint16 y, Uint16 cell_size, U
 			node.y = y + y_pos * cell_size;
 
 			SDL_FillRect(s, &node, color);
+			if (color != col_black) dw_drawBox(s, border_color, node.x, node.y, node.w, node.h, 1);
 		}
 
 	if (SDL_MUSTLOCK(s)) SDL_UnlockSurface(s);
