@@ -7,11 +7,13 @@ LDFLAGS=-lSDL -lSDL_image
 MODULES=$(BINDIR)/main.o $(BINDIR)/shared_vars.o $(BINDIR)/events_manager.o $(BINDIR)/gol.o \
 		$(BINDIR)/drawing_base.o $(BINDIR)/drawing_gui.o $(BINDIR)/drawing_gol.o 
 
-all: gol2d
+PROGNAME=yagol
+
+all: $(PROGNAME)
 
 clean:
 	rm $(BINDIR)/*.o
-	rm $(BINDIR)/gol2d
+	rm $(BINDIR)/$(PROGNAME)
 
 $(BINDIR)/main.o:	$(SRCDIR)/main.c
 	gcc -c $(CFLAGS) $(SRCDIR)/main.c -o $(BINDIR)/main.o
@@ -34,6 +36,6 @@ $(BINDIR)/drawing_gol.o:	$(SRCDIR)/drawing/drawing_gol.c
 $(BINDIR)/gol.o:	$(SRCDIR)/gol/gol.c
 	gcc -c $(CFLAGS) $(SRCDIR)/gol/gol.c -o $(BINDIR)/gol.o
 
-gol2d:	$(MODULES)
-	gcc $(CFLAGS) $(MODULES) $(LDFLAGS) -o $(BINDIR)/gol2d
+$(PROGNAME):	$(MODULES)
+	gcc $(CFLAGS) $(MODULES) $(LDFLAGS) -o $(BINDIR)/$(PROGNAME)
 
