@@ -1,7 +1,7 @@
 SRCDIR=src
 BINDIR=bin
 
-CFLAGS=-O2 -Isrc/
+CFLAGS=-O2 -Isrc/ -g
 LDFLAGS=-lSDL -lSDL_image
 
 MODULES=$(BINDIR)/main.o $(BINDIR)/shared_vars.o $(BINDIR)/events_manager.o $(BINDIR)/gol.o \
