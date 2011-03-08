@@ -2,7 +2,7 @@ SRCDIR=src
 BINDIR=bin
 
 CFLAGS=-O2 -Isrc/ -g
-LDFLAGS=-lSDL -lSDL_image
+LDFLAGS=-lSDL -lSDL_image -lSDL_ttf
 
 MODULES=$(BINDIR)/main.o $(BINDIR)/shared_vars.o $(BINDIR)/events_manager.o $(BINDIR)/gol.o \
 		$(BINDIR)/drawing_base.o $(BINDIR)/drawing_gui.o $(BINDIR)/drawing_gol.o \
