@@ -107,13 +107,33 @@ Uint32 gol_step(void) {
 
 			// LEFT one
 			Uint16 left_x, left_y;
-			left_x = (y == 0) ? (gol_grid_width - 1) : (x - 1);
+			left_x = (x == 0) ? (gol_grid_width - 1) : (x - 1);
 			left_y = y;
 
 			// RIGHT one
 			Uint16 right_x, right_y;
-			right_x = (y == (gol_grid_width - 1)) ? 0 : (x + 1);
+			right_x = (x == (gol_grid_width - 1)) ? 0 : (x + 1);
 			right_y = y;
+
+			// TOP-LEFT one
+			Uint16 tleft_x, tleft_y;
+			tleft_x = left_x;
+			tleft_y = top_y;
+
+			// TOP-RIGHT one
+			Uint16 tright_x, tright_y;
+			tright_x = right_x;
+			tright_y = top_y;
+
+			// BOTTOM-LEFT one
+			Uint16 bleft_x, bleft_y;
+			bleft_x = left_x;
+			bleft_y = bottom_y;
+
+			// BOTTOM-RIGHT one
+			Uint16 bright_x, bright_y;
+			bright_x = right_x;
+			bright_y = bottom_y;
 
 			// Now we have the coords for all the neighbours
 			Uint8 main_val = GRID_POINT(main_gol_grid, x, y) > 0;
@@ -121,8 +141,12 @@ Uint32 gol_step(void) {
 			Uint8 bottom_val = GRID_POINT(main_gol_grid, bottom_x, bottom_y) > 0;
 			Uint8 left_val = GRID_POINT(main_gol_grid, left_x, left_y) > 0;
 			Uint8 right_val = GRID_POINT(main_gol_grid, right_x, right_y) > 0;
+			Uint8 tleft_val = GRID_POINT(main_gol_grid, tleft_x, tleft_y) > 0;
+			Uint8 tright_val = GRID_POINT(main_gol_grid, tright_x, tright_y) > 0;
+			Uint8 bleft_val = GRID_POINT(main_gol_grid, bleft_x, bleft_y) > 0;
+			Uint8 bright_val = GRID_POINT(main_gol_grid, bright_x, bright_y) > 0;
 
-			Uint8 total_neighbours = top_val + bottom_val + left_val + right_val;
+			Uint8 total_neighbours = top_val + bottom_val + left_val + right_val + bleft_val + tleft_val + tright_val + bright_val;
 
 			if (!main_val && ((total_neighbours >= REP_RULE) && (total_neighbours <= REP_M_RULE)))
 				if ((rand() % 100) < (REPRCH_RULE + 5 * (total_neighbours - REP_RULE))) GRID_POINT(back_gol_grid, x, y) = 1; // Cell borns
