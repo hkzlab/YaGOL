@@ -28,7 +28,6 @@ int main(void) {
 
 	// Initialize Game of Life engine
 	init_gol(DEFAULT_GRID_WIDTH, DEFAULT_GRID_HEIGHT);
-	reset_gol(); // Clean grid status
 
 	// Draw the main GUI 
 	dw_gui_drawControlDeck(sdl_screen, HCenter, VTop);
