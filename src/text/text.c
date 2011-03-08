@@ -2,7 +2,7 @@
 #include "text/text.h"
 
 #define FONT_RESOURCE "src/resources/FreeMono.ttf"
-#define FONT_SIZE 8
+#define FONT_SIZE 18
 
 static TTF_Font *font;
 
@@ -24,7 +24,7 @@ void print_text_simple(SDL_Surface *s, char *text, Uint16 x, Uint16 y) {
 	SDL_Color col;
 	col.r = 200; col.g = 200; col.b = 200;
 
-	SDL_Surface *txt = TTF_RenderText_Solid(font, text, col);
+	SDL_Surface *txt = TTF_RenderText_Blended(font, text, col);
 
 	SDL_Rect src, dest;
 

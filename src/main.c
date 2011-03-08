@@ -7,6 +7,7 @@
 #include "events/events.h"
 #include "gol/gol.h"
 #include "drawing/drawing.h"
+#include "text/text.h"
 
 
 extern SDL_Surface *sdl_screen;
@@ -25,6 +26,15 @@ int main(void) {
 		exit(-1);
 	}
 
+	SDL_Rect clear_text_rect;
+
+	clear_text_rect.x = 30;
+	clear_text_rect.y = GRAPH_HEIGHT - 30;
+	clear_text_rect.w = GRAPH_WIDTH - clear_text_rect.x;
+	clear_text_rect.h = GRAPH_HEIGHT - clear_text_rect.y;
+
+	char step_string[80];
+
 	// seed random number generator
 	srand(time(NULL));
 
@@ -38,6 +48,10 @@ int main(void) {
 	cell_grid_x = (GRAPH_WIDTH - (DEFAULT_GRID_WIDTH * cell_grid_size)) / 2;
 	cell_grid_y = 53;
 	dw_drawBox(sdl_screen, SDL_MapRGB(sdl_screen->format, 150, 150, 150), cell_grid_x - 3, cell_grid_y - 3, (DEFAULT_GRID_WIDTH * cell_grid_size) + 6, (DEFAULT_GRID_HEIGHT * cell_grid_size) + 6, 3);
+	
+	snprintf(step_string, 79, "Step: %.8u", current_step);
+	print_text_simple(sdl_screen, step_string, clear_text_rect.x, clear_text_rect.y);
+	
 	SDL_Flip(sdl_screen);
 
 	// Main program loop.
@@ -56,6 +70,12 @@ int main(void) {
 
 		if (should_redraw_grid) {
 			dw_gol_drawGoLPlane(sdl_screen, cell_grid_x, cell_grid_y, DEFAULT_CELL_SIZE, SDL_MapRGB(sdl_screen->format, 0, 200, 0), SDL_MapRGB(sdl_screen->format, 0, 100, 0));
+			
+			SDL_FillRect(sdl_screen, &clear_text_rect, SDL_MapRGB(sdl_screen->format, 0, 0, 0)); // Clear text spacen
+			
+			snprintf(step_string, 79, "Step: %.8u", current_step);
+			print_text_simple(sdl_screen, step_string, clear_text_rect.x, clear_text_rect.y);
+
 			SDL_Flip(sdl_screen);
 		
 			should_redraw_grid = 0;
