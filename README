@@ -1,3 +1,21 @@
 YaGOL: Yet another Game Of Life ...
 
-A lot of useful & interesting information should go in here!!!
+YaGOL is a Game Of Life clone using libSDL. I made this as an exercise
+for one of my courses at University.
+
+It makes use of libSDL, libSDL-ttf, libSDL-image. 
+Having the required libraries and headers, it should be sufficient
+to run "make" in the base directory to get a working executable in the
+bin directory.
+
+The interface is self-explanatory, but some of the buttons only work when
+in pause mode (and you can't draw unless the simulation is paused).
+
+Enjoy!
+Fabio Battaglia
+
+All the code contained here is under GPLv2 licence.
+
+GIT repository for this project - https://github.com/hkzlab/YaGOL
+My website - http://hkzlab.ipv7.net
+My blog (italian only) - http://mercatopo.blogspot.com/
