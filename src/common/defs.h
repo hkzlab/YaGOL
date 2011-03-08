@@ -21,5 +21,6 @@ typedef long long sint64;
 
 #define DEFAULT_GRID_WIDTH 200
 #define DEFAULT_GRID_HEIGHT 130
+#define DEFAULT_CELL_SIZE 3 // Cell size in pixels
 
 #endif /* _GRAPROJ_COMMON_DEFS_ */
