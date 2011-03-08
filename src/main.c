@@ -65,6 +65,8 @@ int init_system(void) {
 		return 0;
 	}
 
+	SDL_WM_SetCaption("YaGOL! Yet another Game Of Life...", NULL);
+
 	return 1;
 }
 
