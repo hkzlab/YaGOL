@@ -1,14 +1,14 @@
 #include "drawing/drawing.h"
 #include <SDL/SDL_image.h>
 
-#define CONTROL_DECK "resources/control_deck.png"
-#define DECK_LOGO "resources/deck_logo.png"
-#define CHAOS_BUTTON "resources/chaos_button.png"
-#define FASTF_BUTTON "resources/fastf_button.png"
-#define QUIT_BUTTON "resources/quit_button.png"
-#define START_BUTTON "resources/start_button.png"
-#define STEP_BUTTON "resources/step_button.png"
-#define STOP_BUTTON "resources/stop_button.png"
+#define CONTROL_DECK "src/resources/control_deck.png"
+#define DECK_LOGO "src/resources/deck_logo.png"
+#define CHAOS_BUTTON "src/resources/chaos_button.png"
+#define FASTF_BUTTON "src/resources/fastf_button.png"
+#define QUIT_BUTTON "src/resources/quit_button.png"
+#define START_BUTTON "src/resources/start_button.png"
+#define STEP_BUTTON "src/resources/step_button.png"
+#define STOP_BUTTON "src/resources/stop_button.png"
 
 void dw_gui_drawControlDeck(SDL_Surface *s, enum HPosition hpos, enum VPosition vpos) {
 	assert(s);
