@@ -58,6 +58,8 @@ void button_press(SDL_MouseButtonEvent *ev) {
 			current_step = 0;
 			should_redraw_grid = 1;
 		} else if (ev->x >= neg_button_x && ev->x <= neg_button_x + BUTTON_WIDTH) { // NEG button
+			if (!paused) return;
+
 			gol_negative_board();
 			current_step = 0;
 			should_redraw_grid = 1;
