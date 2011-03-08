@@ -13,6 +13,8 @@ extern SDL_Surface *sdl_screen;
 extern Uint8 should_quit, should_redraw_grid, fast_forward, paused;
 extern Uint16 cell_grid_x, cell_grid_y, cell_grid_size;
 
+extern Uint32 current_step;
+
 int main(void) {
 
 	// Init system
@@ -45,9 +47,9 @@ int main(void) {
 
 		if (!paused) {
 			if (!fast_forward)
-				gol_step();
+				current_step = gol_step();
 			else
-				gol_multiple_steps(8);
+				current_step = gol_multiple_steps(8);
 
 			should_redraw_grid = 1;
 		}
@@ -71,6 +73,8 @@ int init_system(void) {
 	should_redraw_grid = 0;
 	fast_forward = 0;
 	paused = 1;
+
+	current_step = 0;
 
 	// Init... everything.
 	if(SDL_Init(SDL_INIT_EVERYTHING) < 0) {
