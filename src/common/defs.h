@@ -19,4 +19,7 @@ typedef long long sint64;
 #define GRAPH_HEIGHT 480
 #define GRAPH_DEPTH 32
 
+#define DEFAULT_GRID_WIDTH 200
+#define DEFAULT_GRID_HEIGHT 130
+
 #endif /* _GRAPROJ_COMMON_DEFS_ */
