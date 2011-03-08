@@ -5,7 +5,8 @@ CFLAGS=-O2 -Isrc/ -g
 LDFLAGS=-lSDL -lSDL_image
 
 MODULES=$(BINDIR)/main.o $(BINDIR)/shared_vars.o $(BINDIR)/events_manager.o $(BINDIR)/gol.o \
-		$(BINDIR)/drawing_base.o $(BINDIR)/drawing_gui.o $(BINDIR)/drawing_gol.o 
+		$(BINDIR)/drawing_base.o $(BINDIR)/drawing_gui.o $(BINDIR)/drawing_gol.o \
+		$(BINDIR)/text.o
 
 PROGNAME=yagol
 
@@ -35,6 +36,10 @@ $(BINDIR)/drawing_gol.o:	$(SRCDIR)/drawing/drawing_gol.c
 
 $(BINDIR)/gol.o:	$(SRCDIR)/gol/gol.c
 	gcc -c $(CFLAGS) $(SRCDIR)/gol/gol.c -o $(BINDIR)/gol.o
+
+$(BINDIR)/text.o:	$(SRCDIR)/text/text.c
+	gcc -c $(CFLAGS) $(SRCDIR)/text/text.c -o $(BINDIR)/text.o
+
 
 $(PROGNAME):	$(MODULES)
 	gcc $(CFLAGS) $(MODULES) $(LDFLAGS) -o $(BINDIR)/$(PROGNAME)
