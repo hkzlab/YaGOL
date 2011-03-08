@@ -35,7 +35,7 @@ int main(void) {
 	
 	cell_grid_x = (GRAPH_WIDTH - (DEFAULT_GRID_WIDTH * DEFAULT_CELL_SIZE)) / 2;
 	cell_grid_y = 53;
-	dw_drawBox(sdl_screen, SDL_MapRGB(sdl_screen->format, 150, 150, 150), cell_grid_x - 3, cell_grid_y - 3, (DEFAULT_GRID_WIDTH * DEFAULT_CELL_SIZE) + 3, (DEFAULT_GRID_HEIGHT * DEFAULT_CELL_SIZE) + 3, 3);
+	dw_drawBox(sdl_screen, SDL_MapRGB(sdl_screen->format, 150, 150, 150), cell_grid_x - 3, cell_grid_y - 3, (DEFAULT_GRID_WIDTH * DEFAULT_CELL_SIZE) + 5, (DEFAULT_GRID_HEIGHT * DEFAULT_CELL_SIZE) + 5, 3);
 
 	SDL_Flip(sdl_screen);
 
@@ -45,6 +45,8 @@ int main(void) {
 		poll_sdl_events();
 
 		gol_step();
+		dw_gol_drawGoLPlane(sdl_screen, cell_grid_x, cell_grid_y, DEFAULT_CELL_SIZE, SDL_MapRGB(sdl_screen->format, 0, 200, 0));
+		SDL_Flip(sdl_screen);
 
 		usleep(100000);
 	}
