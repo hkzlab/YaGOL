@@ -15,9 +15,10 @@ void dw_drawVLine(SDL_Surface *s, Uint32 color, Uint16 x, Uint16 y, Uint16 len);
 void dw_drawBox(SDL_Surface *s, Uint32 color, Uint16 x, Uint16 y, Uint16 h, Uint16 w, Uint16 border);
 
 // * GUI DRAWING FUNCTIONS *
-enum HPosition {HTop, HCenter, HBottom};
-enum VPosition {VLeft, VCenter, VBottom};
+// GUI Position selectors
+enum VPosition {VTop, VCenter, VBottom};
+enum HPosition {HLeft, HCenter, HRight};
 
-void dw_gui_drawControlDeck(SDL_Surface *s, enum HPosition vpos, enum VPosition hpos);
+void dw_gui_drawControlDeck(SDL_Surface *s, enum HPosition hpos, enum VPosition vpos);
 
 #endif /* _YAGOL_DRAWING_HEADER_ */

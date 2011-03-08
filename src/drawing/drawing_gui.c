@@ -16,14 +16,56 @@ void dw_gui_drawControlDeck(SDL_Surface *s, enum HPosition hpos, enum VPosition 
 	Uint16 x_deck_pos, y_deck_pos;
 	SDL_Surface *main_deck = IMG_Load(CONTROL_DECK);
 
+	SDL_Rect src_rect, dst_rect;
+
 	if (!main_deck) {
 		fprintf(stderr, "dw_gui_drawControlDeck() failed: unable to load image\n");
 		return;
 	}
 
+	// Lock screen surface!!!
+	if (SDL_MUSTLOCK(s)) SDL_LockSurface(s);
+
+	// Lock main deck surface
 	if (SDL_MUSTLOCK(main_deck)) SDL_LockSurface(main_deck);
 	assert(main_deck->w <= s->w && main_deck->h <= s->h);
 
-	if (SDL_MUSTLOCK(main_deck)) SDL_UnlockSurface(main_deck);
+	// Manage control deck position
+	switch (hpos) { // Horizontal coordinates
+		case HLeft:
+			x_deck_pos = 0;
+			break;
+		case HRight:
+			x_deck_pos = (s->w - main_deck->w) - 1;
+			break;
+		case HCenter:
+		default:
+			x_deck_pos = ((s->w - main_deck->w) / 2) - 1;
+			break;
+	}
 
+	switch (vpos) { // Vertical coordinates
+		case VCenter:
+			y_deck_pos = ((s->h - main_deck->h) / 2) - 1;
+			break;
+		case VTop:
+			y_deck_pos = 0;
+			break;
+		case VBottom:
+			y_deck_pos = (s->h - main_deck->h) - 1;
+		default:
+			break;
+	}
+
+	src_rect.x = 0; src_rect.y = 0; src_rect.w = main_deck->w; src_rect.h = main_deck->h;
+	dst_rect.x = x_deck_pos; dst_rect.y = y_deck_pos; dst_rect.w = main_deck->w; dst_rect.h = main_deck->h;
+
+	SDL_BlitSurface(main_deck, &src_rect, s, &dst_rect);
+
+	// Unlock and free main deck surface
+	if (SDL_MUSTLOCK(main_deck)) SDL_UnlockSurface(main_deck);
+	SDL_FreeSurface(main_deck);
+
+	// Unlock screen surface!!!
+	if (SDL_MUSTLOCK(s)) SDL_UnlockSurface(s);
 }
