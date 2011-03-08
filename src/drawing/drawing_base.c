@@ -80,11 +80,11 @@ void dw_drawBox(SDL_Surface *s, Uint32 color, Uint16 x, Uint16 y, Uint16 h, Uint
 
 	while (border--) {
 		dw_drawVLine(s, color, x, y, h);
-		dw_drawVLine(s, color, x + w, y, h);
 		dw_drawHLine(s, color, x, y, w);
-		dw_drawHLine(s, color, x, y + h, w);
+		dw_drawVLine(s, color, x + w, y, h + 1);
+		dw_drawHLine(s, color, x, y + h, w + 1);
 
 		x++; y++;
-		w--; h--;
+		w -= 2; h -= 2;
 	}
 }
