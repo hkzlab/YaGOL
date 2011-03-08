@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <SDL/SDL_ttf.h>
 
 #include "main.h"
 #include "common/defs.h"
@@ -88,7 +87,11 @@ int init_system(void) {
 		return 0;
 	}
 
+	// Set window title
 	SDL_WM_SetCaption("YaGOL! Yet another Game Of Life...", NULL);
+
+	// Init text subsys
+	init_text();
 
 	return 1;
 }
@@ -96,6 +99,9 @@ int init_system(void) {
 void deinit_system(void) {
 	// Deinit GoL engine
 	deinit_gol();
+
+	// Deinit text subsystem
+	deinit_text();
 
 	// Free screen surface
 	SDL_FreeSurface(sdl_screen);
